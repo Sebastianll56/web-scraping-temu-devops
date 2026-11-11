@@ -1,75 +1,96 @@
 
 name: CI-CD - Web Scraping Temu
 
+# Eventos que activan el flujo de trabajo.
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
+# Permisos generales del workflow.
 permissions:
   contents: read
 
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
 jobs:
 
-  # JOB 1: Integracion continua y pruebas automatizadas
+  # ==========================================
+  # JOB 1: INTEGRACION CONTINUA (CI)
+  # ==========================================
   pruebas:
     name: Ejecutar pruebas automatizadas
     runs-on: ubuntu-24.04
 
     steps:
+
+      # Descargar el codigo del repositorio.
       - name: Descargar codigo del repositorio
         uses: actions/checkout@v7
 
+      # Configurar la version de Python.
       - name: Configurar Python
         uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
 
+      # Instalar las dependencias.
       - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Ejecutar las pruebas automatizadas.
       - name: Ejecutar pruebas con Pytest
         run: |
           python -m pytest -v
 
-  # JOB 2: Despliegue continuo en GitHub Pages
+  # ==========================================
+  # JOB 2: DESPLIEGUE CONTINUO (CD)
+  # ==========================================
   despliegue:
     name: Publicar documentacion en GitHub Pages
 
+    # El despliegue depende de que las pruebas pasen.
     needs: pruebas
 
+    # Solo publicar cuando los cambios lleguen a main.
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     runs-on: ubuntu-24.04
 
+    # Permisos necesarios para publicar en GitHub Pages.
     permissions:
       contents: read
       pages: write
       id-token: write
 
+    # Entorno de publicacion.
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
 
+      # Descargar nuevamente el repositorio.
+      # Cada job utiliza un entorno independiente.
+      - name: Descargar codigo del repositorio
+        uses: actions/checkout@v7
+
+      # Configurar GitHub Pages.
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
+      # Cargar los archivos HTML de la carpeta docs.
       - name: Cargar archivos de la pagina
         uses: actions/upload-pages-artifact@v4
         with:
-          path: docs
+          path: ./docs
 
+      # Publicar la pagina web.
       - name: Publicar pagina web
         id: deployment
         uses: actions/deploy-pages@v4
