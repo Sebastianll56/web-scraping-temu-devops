@@ -1,25 +1,36 @@
 
-name: Integracion Continua - Web Scraping
+name: CI-CD - Web Scraping Temu
 
 on:
   push:
     branches: [main]
+
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
+
+  # JOB 1: Integracion continua y pruebas automatizadas
   pruebas:
     name: Ejecutar pruebas automatizadas
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Descargar codigo del repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+          cache: pip
 
       - name: Instalar dependencias
         run: |
@@ -29,3 +40,36 @@ jobs:
       - name: Ejecutar pruebas con Pytest
         run: |
           python -m pytest -v
+
+  # JOB 2: Despliegue continuo en GitHub Pages
+  despliegue:
+    name: Publicar documentacion en GitHub Pages
+
+    needs: pruebas
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    runs-on: ubuntu-24.04
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Cargar archivos de la pagina
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+
+      - name: Publicar pagina web
+        id: deployment
+        uses: actions/deploy-pages@v4
