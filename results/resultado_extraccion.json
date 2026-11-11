@@ -1,0 +1,8 @@
+{
+    "titulo": "Portátil SUXI 2026 de 15,6 pulgadas",
+    "precio": "900646",
+    "calificacion": "5.0",
+    "cantidad_resenas": "5",
+    "fuente": "pagina_autorizada.html",
+    "metodo": "BeautifulSoup sobre archivo HTML local"
+}
