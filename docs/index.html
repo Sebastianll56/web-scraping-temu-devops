@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Web Scraping Temu | Proyecto DevOps</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #263238;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #123b57;
+            color: white;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #d9e8f1;
+        }
+
+        main {
+            max-width: 950px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 9px #00000010;
+        }
+
+        h2 {
+            color: #17628a;
+            margin-bottom: 14px;
+        }
+
+        ul {
+            padding-left: 25px;
+        }
+
+        .producto {
+            border-left: 5px solid #16a085;
+            padding-left: 18px;
+        }
+
+        .estado {
+            display: inline-block;
+            background: #d9f5e5;
+            color: #187343;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        a {
+            color: #17628a;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #123b57;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Análisis de productos de comercio electrónico</h1>
+        <p>Web Scraping y automatización DevOps</p>
+        <span class="estado">Proyecto académico</span>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Descripción del proyecto</h2>
+            <p>
+                Este proyecto aplica técnicas de extracción y procesamiento
+                de información mediante Python y BeautifulSoup.
+                Se utilizan herramientas de control de versiones,
+                pruebas automatizadas e integración continua con GitHub Actions.
+            </p>
+        </section>
+
+        <section>
+            <h2>Producto seleccionado</h2>
+            <div class="producto">
+                <h3>Portátil SUXI 2026 de 15,6 pulgadas</h3>
+                <p><strong>Plataforma:</strong> Temu</p>
+                <p><strong>Precio observado:</strong> $900.646 COP</p>
+                <p><strong>Memoria RAM:</strong> 16 GB DDR4</p>
+                <p><strong>Almacenamiento seleccionado:</strong> 128 GB SSD</p>
+                <p><strong>Calificación observada:</strong> 5,0</p>
+                <p>
+                    Los datos corresponden a una captura de la publicación
+                    y no a una extracción en vivo de Temu.
+                </p>
+                <p>
+                    <a href="https://www.temu.com/co/suxi-2026--portatil--de--de-15-6-pulgadas-16gb-ddr4-128-256-512gb-ssd-procesador--de--rendimiento-pantalla-hd-gran-capacidad-de-bateria-camara-hd-ideal-para--de--entretenimiento-estudio-y-videoconferencias-g-607516930985007.html"
+                       target="_blank" rel="noopener noreferrer">
+                        Consultar publicación original
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Tecnologías utilizadas</h2>
+            <ul>
+                <li>Python para el procesamiento de información.</li>
+                <li>BeautifulSoup para el análisis de documentos HTML.</li>
+                <li>Pytest para las pruebas automatizadas.</li>
+                <li>Git para el control de versiones.</li>
+                <li>GitHub para la gestión del repositorio.</li>
+                <li>GitHub Actions para la integración continua.</li>
+                <li>GitHub Pages para la publicación de la documentación.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Pruebas automatizadas</h2>
+            <p>
+                El proyecto dispone de pruebas con Pytest para verificar
+                la extracción del título, precio, calificación y reseñas,
+                así como el comportamiento ante documentos sin datos.
+            </p>
+            <span class="estado">2 pruebas aprobadas en la ejecución verificada</span>
+        </section>
+
+        <section>
+            <h2>Flujo de trabajo DevOps</h2>
+            <p>
+                El desarrollo utiliza ramas, commits y solicitudes de
+                integración (Pull Requests). GitHub Actions ejecuta
+                automáticamente las pruebas cuando se realizan cambios
+                en la rama principal o se proponen modificaciones.
+            </p>
+            <p>
+                La publicación de esta documentación se realizará
+                mediante GitHub Pages.
+            </p>
+        </section>
+
+        <section>
+            <h2>Información académica</h2>
+            <p><strong>Estudiante:</strong> Sebastian Londoño Londoño</p>
+            <p><strong>Institución:</strong> IU DIGITAL DE ANTIOQUIA</p>
+            <p><strong>Asignatura:</strong> Programación para Análisis de Datos</p>
+            <p><strong>Docente:</strong> Andres Felipe Palacio Angel</p>
+            <p><strong>Proyecto:</strong> Evidencia de aprendizaje 2</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Proyecto académico de desarrollo y automatización DevOps</p>
+        <p>2026 - IU DIGITAL DE ANTIOQUIA</p>
+    </footer>
+
+</body>
+</html>
